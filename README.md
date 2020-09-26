@@ -33,13 +33,13 @@ Angular [Universal](https://github.com/angular/universal) module for [Nest](http
 Using the Angular CLI:
 
 ```bash
-$ ng add @nestjs/ng-universal-app
+$ ng add @waitaction/nestjs-ng-universal
 ```
 
 Or manually:
 
 ```bash
-$ npm i @nestjs/ng-universal-app
+$ npm i @waitaction/nestjs-ng-universal
 ```
 
 ## Example
@@ -53,7 +53,7 @@ If you have installed the module manually, you need to import `AngularUniversalM
 ```typescript
 import { Module } from '@nestjs/common';
 import { join } from 'path';
-import { AngularUniversalModule } from '@nestjs/ng-universal-app';
+import { AngularUniversalModule } from '@waitaction/nestjs-ng-universal';
 
 @Module({
   imports: [

@@ -1,5 +1,5 @@
 {
-  "name": "@nestjs/ng-universal-app",
+  "name": "@waitaction/nestjs-ng-universal",
   "version": "4.0.2",
   "description": "Nest - modern, fast, powerful node.js web framework (@ng-universal)",
   "author": "Kamil Mysliwiec",
