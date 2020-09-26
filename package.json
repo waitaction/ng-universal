@@ -1,6 +1,6 @@
 {
-  "name": "@nestjs/ng-universal",
-  "version": "4.0.1",
+  "name": "@nestjs/ng-universal-app",
+  "version": "4.0.2",
   "description": "Nest - modern, fast, powerful node.js web framework (@ng-universal)",
   "author": "Kamil Mysliwiec",
   "license": "MIT",
@@ -42,9 +42,10 @@
   },
   "dependencies": {
     "@angular-devkit/schematics": "10.1.2",
-    "@schematics/angular": "10.1.2",
+    "@gorniv/ngx-universal": "^2.2.2",
     "@nguniversal/common": "10.0.2",
     "@nguniversal/express-engine": "10.1.0",
+    "@schematics/angular": "10.1.2",
     "memory-cache": "0.2.0"
   },
   "schematics": "./schematics/collection.json",

@@ -33,13 +33,13 @@ Angular [Universal](https://github.com/angular/universal) module for [Nest](http
 Using the Angular CLI:
 
 ```bash
-$ ng add @nestjs/ng-universal
+$ ng add @nestjs/ng-universal-app
 ```
 
 Or manually:
 
 ```bash
-$ npm i @nestjs/ng-universal
+$ npm i @nestjs/ng-universal-app
 ```
 
 ## Example
@@ -53,7 +53,7 @@ If you have installed the module manually, you need to import `AngularUniversalM
 ```typescript
 import { Module } from '@nestjs/common';
 import { join } from 'path';
-import { AngularUniversalModule } from '@nestjs/ng-universal';
+import { AngularUniversalModule } from '@nestjs/ng-universal-app';
 
 @Module({
   imports: [
@@ -144,6 +144,41 @@ export class NotFoundComponent {
   }
 }
 ```
+
+## Universal Cookie
+
+The server and client share the `CookieService`.
+
+``` ts
+import { makeStateKey, TransferState } from '@angular/platform-browser';
+import { Injectable } from '@angular/core';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpResponse } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
+import { CookieService } from '@gorniv/ngx-universal';
+import { TokenService } from '../token.service';
+
+@Injectable()
+export class ServerStateInterceptor implements HttpInterceptor {
+
+    constructor(
+        private transferState: TransferState,
+        private tokenService: TokenService,
+        private cookieService: CookieService) { }
+
+    intercept(req: HttpRequest<any>, next: HttpHandler) {
+        let self = this;
+        return next.handle(req).pipe(
+            tap(event => {
+                if (event instanceof HttpResponse) {
+                    this.transferState.set(makeStateKey(self.tokenService.computedUrlKey(req.url)), event.body);
+                    this.cookieService.put(self.tokenService.computedUrlKey(req.url), "server");
+                }
+            })
+        );
+    }
+}
+```
+
 
 ## Support
 

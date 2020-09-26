@@ -58,7 +58,7 @@ function addDependenciesAndScripts(): Rule {
     });
     addPackageJsonDependency(host, {
       type: NodeDependencyType.Default,
-      name: '@nestjs/ng-universal',
+      name: '@nestjs/ng-universal-app',
       version: '^4.0.0'
     });
     addPackageJsonDependency(host, {

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AngularUniversalModule } from '@nestjs/ng-universal';
+import { AngularUniversalModule } from '@nestjs/ng-universal-app';
 import { join } from 'path';
 import { AppServerModule } from '../src/main.server';
 
