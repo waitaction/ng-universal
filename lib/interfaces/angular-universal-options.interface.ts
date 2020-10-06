@@ -29,14 +29,22 @@ export interface AngularUniversalOptions {
    * Cache options (flag or configuration object)
    */
   cache?:
-    | boolean
-    | {
-        expiresIn?: number;
-        storage?: CacheStorage;
-        keyGenerator?: CacheKeyGenerator;
-      };
+  | boolean
+  | {
+    expiresIn?: number;
+    storage?: CacheStorage;
+    keyGenerator?: CacheKeyGenerator;
+  };
+
+  /**
+   * 使用ejs，放弃服务端渲染，只做为与nestjs结合的http服务器
+   */
+  useEjsEngine?: boolean;
+
   /**
    * Module to bootstrap
    */
   bootstrap: any;
+
+
 }
