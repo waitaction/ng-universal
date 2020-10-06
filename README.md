@@ -61,8 +61,7 @@ import { AngularUniversalModule } from '@waitaction/nestjs-ng-universal';
   imports: [
     AngularUniversalModule.forRoot({
       bootstrap: AppServerModule,
-      viewsPath: join(process.cwd(), 'dist/{APP_NAME}/browser'),
-      // useEjsEngine: true, // 标记为使用ejs引擎,angular页面不在服务端渲染
+      viewsPath: join(process.cwd(), 'dist/{APP_NAME}/browser')
     }),
   ],
 })
@@ -84,6 +83,7 @@ The `forRoot()` method takes an options object with a few useful properties.
 | `renderPath` | string?    | Path to render Angular app (default: `*` ) |
 | `extraProviders` | StaticProvider[]?    | The platform level providers for the current render request |
 | `cache` | boolean? \| object?    | Cache options, description below (default: `true` ) |
+| `useEjsEngine` | boolean? |  HTML that is not rendered on the server (default: `false` ) |
 
 ### Cache
 
