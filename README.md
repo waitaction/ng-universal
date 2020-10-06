@@ -8,7 +8,9 @@
 [linux-url]: https://travis-ci.org/nestjs/nest
 
   <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+
     <p align="center">
+
 <a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
 <a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
@@ -32,13 +34,13 @@ Angular [Universal](https://github.com/angular/universal) module for [Nest](http
 
 Using the Angular CLI:
 
-```bash
+``` bash
 $ ng add @waitaction/nestjs-ng-universal
 ```
 
 Or manually:
 
-```bash
+``` bash
 $ npm i @waitaction/nestjs-ng-universal
 ```
 
@@ -50,7 +52,7 @@ See full example [here](https://github.com/kamilmysliwiec/universal-nest).
 
 If you have installed the module manually, you need to import `AngularUniversalModule` in your Nest application.
 
-```typescript
+``` typescript
 import { Module } from '@nestjs/common';
 import { join } from 'path';
 import { AngularUniversalModule } from '@waitaction/nestjs-ng-universal';
@@ -59,12 +61,15 @@ import { AngularUniversalModule } from '@waitaction/nestjs-ng-universal';
   imports: [
     AngularUniversalModule.forRoot({
       bootstrap: AppServerModule,
-      viewsPath: join(process.cwd(), 'dist/{APP_NAME}/browser')
+      viewsPath: join(process.cwd(), 'dist/{APP_NAME}/browser'),
+      // useEjsEngine: true, // 标记为使用ejs引擎,angular页面不在服务端渲染
     }),
   ],
 })
 export class ApplicationModule {}
 ```
+
+> `useEjsEngine` 设置为 `true` 则输出不渲染的html
 
 ## API Spec
 
@@ -72,23 +77,23 @@ The `forRoot()` method takes an options object with a few useful properties.
 
 | Property        | Type           | Description  |
 | ------------- | ------------- | ----- |
-| `viewsPath`      | string | The directory where the module should look for client bundle (Angular app) |
-| `bootstrap`      | Function      |   Angular server module reference (`AppServerModule`). |
-| `templatePath` | string?      | Path to index file (default: `{viewsPaths}/index.html`) |
-| `rootStaticPath` | string?    | Static files root directory (default: `*.*`) |
-| `renderPath` | string?    | Path to render Angular app (default: `*`) |
+| `viewsPath` | string | The directory where the module should look for client bundle (Angular app) |
+| `bootstrap` | Function      |   Angular server module reference ( `AppServerModule` ). |
+| `templatePath` | string?      | Path to index file (default: `{viewsPaths}/index.html` ) |
+| `rootStaticPath` | string?    | Static files root directory (default: `*.*` ) |
+| `renderPath` | string?    | Path to render Angular app (default: `*` ) |
 | `extraProviders` | StaticProvider[]?    | The platform level providers for the current render request |
-| `cache` | boolean? \| object?    | Cache options, description below (default: `true`) |
+| `cache` | boolean? \| object?    | Cache options, description below (default: `true` ) |
 
 ### Cache
 
 | Property        | Type           | Description  |
 | ------------- | ------------- | ----- |
-| `expiresIn`      | number? | Cache expiration in milliseconds (default: `60000`) |
-| `storage`      | CacheStorage?      | Interface for implementing custom cache storage (default: in memory) |
+| `expiresIn` | number? | Cache expiration in milliseconds (default: `60000` ) |
+| `storage` | CacheStorage?      | Interface for implementing custom cache storage (default: in memory) |
 | `keyGenerator` | CacheKeyGenerator?      | Interface for implementing custom cache key generation logic (default: by url) |
 
-```typescript
+``` typescript
 AngularUniversalModule.forRoot({
   bootstrap: AppServerModule,
   viewsPath: join(process.cwd(), 'dist/{APP_NAME}/browser'),
@@ -102,7 +107,7 @@ AngularUniversalModule.forRoot({
 
 ### Example for CacheKeyGenerator:
 
-```typescript
+``` typescript
 export class CustomCacheKeyGenerator implements CacheKeyGenerator {
   generateCacheKey(request: Request): string {
     const md = new MobileDetect(request.headers['user-agent']);
@@ -118,7 +123,7 @@ This tool uses `@nguniversal/express-engine` and will properly provide access to
 
 This is useful for things like setting the response code to 404 when your Angular router can't find a page (i.e. `path: '**'` in routing):
 
-```ts
+``` ts
 import { Response } from 'express';
 import { Component, Inject, Optional, PLATFORM_ID } from '@angular/core';
 import { isPlatformServer } from '@angular/common';
@@ -147,7 +152,7 @@ export class NotFoundComponent {
 
 ## Universal Cookie
 
-The server and client share the `CookieService`.
+The server and client share the `CookieService` .
 
 ``` ts
 import { makeStateKey, TransferState } from '@angular/platform-browser';
@@ -178,7 +183,6 @@ export class ServerStateInterceptor implements HttpInterceptor {
     }
 }
 ```
-
 
 ## Support
 
