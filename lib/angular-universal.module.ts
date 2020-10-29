@@ -53,6 +53,9 @@ export class AngularUniversalModule implements OnModuleInit {
     const app = httpAdapter.getInstance();
     app.get(this.ngOptions.renderPath, (req, res) => {
       req.cookies = req.headers.cookie;
+      if (this.ngOptions.middleware) {
+        this.ngOptions.middleware(req, res);
+      }
       res.render(this.ngOptions.templatePath, {
         req,
         res,

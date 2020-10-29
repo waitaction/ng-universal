@@ -41,10 +41,15 @@ export interface AngularUniversalOptions {
    */
   useEjsEngine?: boolean;
 
+
   /**
    * Module to bootstrap
    */
   bootstrap: any;
 
+  /**
+   * 中间方法，用于处理cookie等
+   */
+  middleware: (req, res) => void;
 
 }
