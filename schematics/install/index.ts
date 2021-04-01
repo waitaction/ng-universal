@@ -64,7 +64,7 @@ function addDependenciesAndScripts(): Rule {
     addPackageJsonDependency(host, {
       type: NodeDependencyType.Default,
       name: '@nguniversal/express-engine',
-      version: '^10.0.0'
+      version: '^11.0.0'
     });
 
     const pkgPath = '/package.json';
@@ -83,7 +83,7 @@ function addDependenciesAndScripts(): Rule {
 }
 
 function updateWorkspaceConfigRule(options: UniversalOptions): Rule {
-  return () => {
+  return (() => {
     return updateWorkspace(workspace => {
       const projectName = options.clientProject;
       const project = workspace.projects.get(projectName);
@@ -107,7 +107,7 @@ function updateWorkspaceConfigRule(options: UniversalOptions): Rule {
         configurations.production.optimization = false;
       }
     });
-  };
+  }) as any;
 }
 
 function addFiles(options: UniversalOptions): Rule {
@@ -140,7 +140,7 @@ function addFiles(options: UniversalOptions): Rule {
   };
 }
 
-export default function(options: UniversalOptions): Rule {
+export default function (options: UniversalOptions): Rule {
   return (host: Tree, context: SchematicContext) => {
     if (!options.skipInstall) {
       context.addTask(new NodePackageInstallTask());
